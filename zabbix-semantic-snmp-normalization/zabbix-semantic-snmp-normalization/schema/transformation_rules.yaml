@@ -1,0 +1,52 @@
+transformation_rules:
+  - metric: system.cpu.util
+    source_type: idle_based
+    input:
+      - ssCpuIdle.0
+    formula: "100 - ssCpuIdle"
+    output_unit: percent
+    error_handling:
+      missing_value: "metric becomes unsupported"
+      invalid_value: "discard value"
+    platforms:
+      - Alt Linux
+      - Eltex vESR
+
+  - metric: system.cpu.util
+    source_type: per_core_load
+    input:
+      - hrProcessorLoad.*
+    formula: "avg(hrProcessorLoad.*)"
+    output_unit: percent
+    error_handling:
+      missing_core: "use average over available core values"
+      no_values: "metric becomes unsupported"
+    platforms:
+      - MikroTik
+
+  - metric: system.memory.util
+    source_type: total_available
+    input:
+      - memTotalReal
+      - memAvailReal
+    formula: "(1 - avail / total) * 100"
+    output_unit: percent
+    error_handling:
+      total_zero: "discard value"
+      missing_value: "metric becomes unsupported"
+    platforms:
+      - Alt Linux
+      - Eltex vESR
+
+  - metric: system.memory.util
+    source_type: total_used
+    input:
+      - hrStorageSize
+      - hrStorageUsed
+    formula: "(used / total) * 100"
+    output_unit: percent
+    error_handling:
+      missing_ram_index: "metric is not calculated"
+      total_zero: "discard value"
+    platforms:
+      - MikroTik

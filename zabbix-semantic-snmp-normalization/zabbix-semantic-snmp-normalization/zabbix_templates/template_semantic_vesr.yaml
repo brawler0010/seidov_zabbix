@@ -1,0 +1,32 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+  - uuid: '00000000000000000000000000000001'
+    name: Templates/Experiment
+  templates:
+  - uuid: ''
+    template: Template Semantic vESR
+    name: Template Semantic vESR
+    groups:
+    - name: Templates/Experiment
+    items:
+    - uuid: ''
+      name: Semantic CPU utilization
+      type: CALCULATED
+      key: system.cpu.util
+      delay: 30s
+      history: 7d
+      value_type: FLOAT
+      trends: 90d
+      units: '%'
+      params: 100-last(//raw.cpu.idle)
+    - uuid: ''
+      name: Semantic memory utilization
+      type: CALCULATED
+      key: system.memory.util
+      delay: 30s
+      history: 7d
+      value_type: FLOAT
+      trends: 90d
+      units: '%'
+      params: (1-last(//raw.mem.avail)/last(//raw.mem.total))*100

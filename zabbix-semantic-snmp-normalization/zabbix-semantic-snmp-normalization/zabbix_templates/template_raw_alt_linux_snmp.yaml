@@ -1,0 +1,49 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+  - uuid: '00000000000000000000000000000001'
+    name: Templates/Experiment
+  templates:
+  - uuid: ''
+    template: Template Raw Alt Linux SNMP
+    name: Template Raw Alt Linux SNMP
+    groups:
+    - name: Templates/Experiment
+    items:
+    - uuid: ''
+      name: Raw CPU idle
+      type: SNMP_AGENT
+      snmp_oid: UCD-SNMP-MIB::ssCpuIdle.0
+      key: raw.cpu.idle
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+    - uuid: ''
+      name: Raw memory total
+      type: SNMP_AGENT
+      snmp_oid: UCD-SNMP-MIB::memTotalReal.0
+      key: raw.mem.total
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+      units: B
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '1024'
+    - uuid: ''
+      name: Raw memory available
+      type: SNMP_AGENT
+      snmp_oid: UCD-SNMP-MIB::memAvailReal.0
+      key: raw.mem.avail
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+      units: B
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '1024'

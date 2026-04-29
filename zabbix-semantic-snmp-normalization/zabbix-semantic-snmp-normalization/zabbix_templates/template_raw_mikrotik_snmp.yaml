@@ -1,0 +1,60 @@
+zabbix_export:
+  version: '7.0'
+  template_groups:
+  - uuid: '00000000000000000000000000000001'
+    name: Templates/Experiment
+  templates:
+  - uuid: ''
+    template: Template Raw MikroTik SNMP
+    name: Template Raw MikroTik SNMP
+    groups:
+    - name: Templates/Experiment
+    items:
+    - uuid: ''
+      name: Raw CPU core 1
+      type: SNMP_AGENT
+      snmp_oid: HOST-RESOURCES-MIB::hrProcessorLoad.1
+      key: raw.cpu.core1
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+      units: '%'
+    - uuid: ''
+      name: Raw CPU core 2
+      type: SNMP_AGENT
+      snmp_oid: HOST-RESOURCES-MIB::hrProcessorLoad.2
+      key: raw.cpu.core2
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+      units: '%'
+    - uuid: ''
+      name: Raw memory total
+      type: SNMP_AGENT
+      snmp_oid: HOST-RESOURCES-MIB::hrStorageSize.65536
+      key: raw.mem.total
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+      units: B
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '1024'
+    - uuid: ''
+      name: Raw memory used
+      type: SNMP_AGENT
+      snmp_oid: HOST-RESOURCES-MIB::hrStorageUsed.65536
+      key: raw.mem.used
+      delay: 30s
+      history: 7d
+      value_type: UNSIGNED
+      trends: 90d
+      units: B
+      preprocessing:
+      - type: MULTIPLIER
+        parameters:
+        - '1024'

@@ -1,0 +1,104 @@
+metrics:
+  - name: asset.identity.name
+    domain: asset
+    entity: identity
+    attribute: name
+    unit: string
+    type: string
+    description: Host or device name obtained from SNMPv2-MIB::sysName.0
+
+  - name: system.uptime
+    domain: system
+    entity: host
+    attribute: uptime
+    unit: seconds
+    type: integer
+    description: Device uptime obtained from sysUpTimeInstance or hrSystemUptime
+
+  - name: network.interface.name
+    domain: network
+    entity: interface
+    attribute: name
+    unit: string
+    type: string
+    description: Network interface name or description
+
+  - name: network.interface.admin_status
+    domain: network
+    entity: interface
+    attribute: admin_status
+    unit: state
+    type: integer
+    description: Administrative status of network interface
+
+  - name: network.interface.oper_status
+    domain: network
+    entity: interface
+    attribute: oper_status
+    unit: state
+    type: integer
+    description: Operational status of network interface
+
+  - name: network.interface.traffic.in.bytes
+    domain: network
+    entity: interface
+    attribute: traffic.in
+    unit: bytes
+    type: counter
+    description: Incoming interface traffic counter
+
+  - name: network.interface.traffic.out.bytes
+    domain: network
+    entity: interface
+    attribute: traffic.out
+    unit: bytes
+    type: counter
+    description: Outgoing interface traffic counter
+
+  - name: network.interface.speed
+    domain: network
+    entity: interface
+    attribute: speed
+    unit: bit/s
+    type: gauge
+    description: Nominal interface speed
+
+  - name: system.cpu.util
+    domain: system
+    entity: cpu
+    attribute: utilization
+    unit: percent
+    type: float
+    description: Aggregated CPU utilization
+
+  - name: system.memory.total.bytes
+    domain: system
+    entity: memory
+    attribute: total
+    unit: bytes
+    type: integer
+    description: Total physical memory
+
+  - name: system.memory.available.bytes
+    domain: system
+    entity: memory
+    attribute: available
+    unit: bytes
+    type: integer
+    description: Available physical memory
+
+  - name: system.memory.used.bytes
+    domain: system
+    entity: memory
+    attribute: used
+    unit: bytes
+    type: integer
+    description: Used physical memory
+
+  - name: system.memory.util
+    domain: system
+    entity: memory
+    attribute: utilization
+    unit: percent
+    type: float
+    description: RAM utilization
